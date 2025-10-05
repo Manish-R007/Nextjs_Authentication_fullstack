@@ -1,36 +1,107 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Project Overview 🚀
+Project Name: User Authentication System with Email Verification 🔐
+Description ✨
 
-## Getting Started
+A full-stack web application that implements a secure and user-friendly authentication system. Users can sign up, log in, and verify their email addresses. Built with Next.js, React, MongoDB, and Tailwind CSS.
 
-First, run the development server:
+Key Features ✅
 
-```bash
+User Registration 📝
+
+Create an account with username, email, and password.
+
+Passwords are securely hashed 🔒 using bcryptjs.
+
+Email Verification 📧
+
+Sends unique verification link after signup.
+
+Token expires after a set period ⏳.
+
+User Login 🔑
+
+Login only after verifying email.
+
+Proper feedback for invalid credentials ❌.
+
+Profile Page 👤
+
+Displays user info after login.
+
+Includes logout functionality 🚪.
+
+Forgot Password 🔄
+
+Feature is under development 🛠️.
+
+Users will be able to reset passwords via email soon.
+
+API Endpoints 🛠️
+
+POST /api/users/signup – Register
+
+POST /api/users/login – Login
+
+POST /api/users/verifyemail – Verify Email
+
+GET /api/users/extractuser – Get User Details
+
+GET /api/users/logout – Logout
+
+Frontend 💻
+
+Next.js + React + Tailwind CSS
+
+Responsive UI 🌐
+
+Modern cards, buttons, and gradient backgrounds 🎨
+
+Backend ⚙️
+
+Node.js, Next.js API Routes
+
+MongoDB with Mongoose
+
+Nodemailer for email sending ✉️
+
+Secure token handling and expiration ⏱️
+
+Tech Stack 🛠️
+
+Frontend: Next.js, React, Tailwind CSS 🎨
+
+Backend: Node.js, Next.js API Routes ⚡
+
+Database: MongoDB 🗄️
+
+Email Service: Nodemailer ✉️
+
+Authentication: Token-based 🔐
+
+Password Security: bcryptjs 🔑
+
+How to Run Locally 🏃‍♂️
+
+Clone the repo:
+
+git clone <your-repo-url>
+
+    Install dependencies:
+
+npm install
+
+    Add .env file with credentials 🔑
+
+    Run the server:
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Future Enhancements 🌟
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Forgot password functionality 🔄 (Ongoing)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+User roles & access control 👥
 
-## Learn More
+Frontend validation and better error messages ⚠️
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Dark/Light mode toggle 🌙☀️
