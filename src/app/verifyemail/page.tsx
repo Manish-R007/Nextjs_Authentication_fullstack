@@ -1,34 +1,63 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { useSearchParams, useRouter } from 'next/navigation';
+import axios from "axios";
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
+
 
 export default function VerifyEmailPage() {
-  const searchParams = useSearchParams();
-  const router = useRouter();
-  const [token, setToken] = useState<string | null>(null);
 
-  useEffect(() => {
-    const t = searchParams.get('token');
-    if (t) {
-      setToken(decodeURIComponent(t)); // decode the URL-encoded token
-    } else {
-      // No token provided -> redirect to profile or login
-      router.push('/profile');
+    const [token, setToken] = useState("");
+    const [verified, setVerified] = useState(false);
+    const [error, setError] = useState(false);
+
+    const verifyUserEmail = async () => {
+        try {
+            await axios.post('/api/users/verifyemail', {token})
+            setVerified(true);
+        } catch (error:any) {
+            setError(true);
+            console.log(error.message);
+            
+        }
+
     }
-  }, [searchParams, router]);
 
-  return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-yellow-400 to-orange-500 p-4">
-      <div className="bg-white dark:bg-gray-900 p-8 rounded-2xl shadow-lg w-full max-w-md text-center">
-        <h1 className="text-3xl font-bold mb-6 text-gray-800 dark:text-white">Verify Email</h1>
-        <div className="mb-6">
-          <h2 className="text-lg mb-2 text-gray-700 dark:text-gray-300">Token:</h2>
-          <div className="p-3 bg-orange-500 rounded-md text-black font-mono">
-            {token || 'No token found'}
-          </div>
+    useEffect(() => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const urlToken = urlParams.get("token");
+        setToken(decodeURIComponent(urlToken || ""));
+
+    }, []);
+
+
+    useEffect(() => {
+        if(token.length > 0) {
+            verifyUserEmail();
+        }
+    }, [token]);
+
+    return(
+        <div className="flex flex-col items-center justify-center min-h-screen py-2">
+
+            <h1 className="text-4xl">Verify Email</h1>
+            <h2 className="p-2 bg-orange-500 text-black">{token ? `${token}` : "no token"}</h2>
+
+            {verified && (
+                <div>
+                    <h2 className="text-2xl">Email Verified</h2>
+                    <Link href="/login">
+                        Login
+                    </Link>
+                </div>
+            )}
+            {error && (
+                <div>
+                    <h2 className="text-2xl bg-red-500 text-black">Error</h2>
+                    
+                </div>
+            )}
         </div>
-      </div>
-    </div>
-  );
+    )
+
 }

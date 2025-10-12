@@ -74,6 +74,9 @@ export default function SignupPage() {
             onChange={(e) => setUser({ ...user, password: e.target.value })}
             className="p-3 border border-gray-300 rounded-lg mb-6 focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-gray-800 dark:text-white dark:border-gray-600"
           />
+         <Link href='/forgotpassword'
+         className="text-blue-500 hover:underline font-medium"
+         >forgotpassword</Link>
         </div>
 
         <button
